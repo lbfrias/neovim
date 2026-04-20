@@ -6,7 +6,7 @@ return {
             {
                 ft = "neo-tree",
                 title = "Neo-tree",
-                size = { width = 0.1 },
+                size = { width = 0.12 },
             }
         },
         right = {
