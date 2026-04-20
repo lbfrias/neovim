@@ -1,11 +1,13 @@
 vim.g.mapleader = " "
 
 require("config.lazy")
+require("config.keymaps")
+require("lazy").setup("plugins")
 
-local keymap = vim.keymap
+vim.wo.number = true
+vim.wo.relativenumber = true
 
--- File navigation
-keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>")
-keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<cr>")
-keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>")
-keymap.set("n", "<leader>fh", "<cmd>FzfLua help_tags<cr>")
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4

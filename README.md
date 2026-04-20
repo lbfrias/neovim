@@ -5,3 +5,5 @@ neovim config
 - neovim
 - fzf
 - ripgrep
+- npm
+- nodejs
