@@ -7,4 +7,12 @@ return {
         "nvim-tree/nvim-web-devicons", -- optional, but recommended
     },
     lazy = false, -- neo-tree will lazily load itself
+    opts = {
+        filesystem = {
+            filtered_items = {
+                hide_dotfiles = false,
+                hide_gitignored = true,
+            },
+        },
+    },
 }

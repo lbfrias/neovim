@@ -29,14 +29,14 @@ local api = vim.api
 
 --- Open or toggle terminal using toggleterm
 local function toggle_terminal()
-  require("toggleterm").toggle()
+    require("toggleterm").toggle()
 end
 
 --- Open all three: Neo-tree, CopilotChat, and Terminal
 local function open_vscode_layout()
-  vim.cmd("Neotree toggle")
-  vim.cmd("CopilotChatToggle")
-  toggle_terminal()
+    vim.cmd("Neotree toggle")
+    vim.cmd("CopilotChatToggle")
+    toggle_terminal()
 end
 
 
@@ -79,14 +79,14 @@ keymap.set("n", "<C-\\>", function() toggle_terminal() end, { desc = "Toggle ter
 keymap.set("n", "<leader>to", function() open_vscode_layout() end, { desc = "Open VSCode layout (all three)" })
 keymap.set("n", "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", { desc = "Toggle markdown rendering" })
 keymap.set("n", "<leader>ts", function()
-  vim.wo.spell = not vim.wo.spell
-  local status = vim.wo.spell and "enabled" or "disabled"
-  print("Spell check " .. status)
+    vim.wo.spell = not vim.wo.spell
+    local status = vim.wo.spell and "enabled" or "disabled"
+    print("Spell check " .. status)
 end, { desc = "Toggle spell check" })
 keymap.set("n", "<leader>tn", function()
-  vim.wo.relativenumber = not vim.wo.relativenumber
-  local status = vim.wo.relativenumber and "relative" or "absolute"
-  print("Line numbers: " .. status)
+    vim.wo.relativenumber = not vim.wo.relativenumber
+    local status = vim.wo.relativenumber and "relative" or "absolute"
+    print("Line numbers: " .. status)
 end, { desc = "Toggle relative line numbers" })
 
 -- ============================================================================
