@@ -7,3 +7,5 @@ neovim config
 - ripgrep
 - npm
 - nodejs
+- tree-sitter
+- tree-sitter-cli
