@@ -30,13 +30,16 @@ local api = vim.api
 --- Open or toggle terminal using toggleterm
 local function toggle_terminal()
     require("toggleterm").toggle()
+    vim.cmd("stopinsert")  -- Ensure terminal opens in normal mode
 end
 
 --- Open all three: Neo-tree, CopilotChat, and Terminal
 local function open_vscode_layout()
+    local win = api.nvim_get_current_win()
     vim.cmd("Neotree toggle")
     vim.cmd("CopilotChatToggle")
     toggle_terminal()
+    api.nvim_set_current_win(win)  -- Return focus to original window
 end
 
 
@@ -65,7 +68,7 @@ keymap.set("n", "<leader>nf", "<cmd>Neotree focus<cr>", { desc = "Focus Neo-tree
 -- ============================================================================
 
 keymap.set("n", "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "Open CopilotChat" })
-keymap.set("n", "<C-]>", "<cmd>CopilotChatToggle<cr>", { desc = "en CopilotChat (direct)" })
+keymap.set("n", "<C-;>", "<cmd>CopilotChatToggle<cr>", { desc = "en CopilotChat (direct)" })
 keymap.set("v", "<leader>cx", "<cmd>CopilotChatVisualSelected<cr>", { desc = "CopilotChat with selection" })
 keymap.set("n", "<leader>cb", "<cmd>CopilotChatBuffer<cr>", { desc = "CopilotChat with buffer" })
 
@@ -98,8 +101,8 @@ keymap.set("n", "<leader>bp", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous
 keymap.set("n", "<leader>bc", "<cmd>bdelete<cr>", { desc = "Close buffer" })
 keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
-keymap.set("n", "<C-PageDown>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer (VSCode style)" })
-keymap.set("n", "<C-PageUp>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer (VSCode style)" })
+keymap.set("n", "<C-]>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer (VSCode style)" })
+keymap.set("n", "<C-[>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer (VSCode style)" })
 
 -- ============================================================================
 -- EDITOR UTILITIES

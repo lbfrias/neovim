@@ -11,6 +11,7 @@ return {
             'powershell',
             'python',
             -- config formats
+            'lua',
             'yaml',
             'json',
             'hcl',        -- Terraform / OpenTofu
@@ -41,14 +42,22 @@ return {
         }
 
         vim.api.nvim_create_autocmd('FileType', {
-            pattern = {'python',},
-            callback = function()
-                vim.treesitter.start()
-                vim.wo.foldmethod = 'expr'
-                vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-                vim.wo.foldenable = false  -- don't fold on open
-                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-            end,
+        pattern = '*',
+        callback = function(args)
+            local ft = vim.bo[args.buf].filetype
+            if ft == '' or ft == nil then return end
+
+            -- only start treesitter if a parser exists for this filetype
+            local ok = pcall(vim.treesitter.language.inspect, ft)
+            if not ok then return end
+
+            vim.treesitter.start()
+            vim.wo.foldmethod = 'expr'
+            vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+            vim.wo.foldenable = false
+            vim.wo.foldlevel = 99
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
         })
     end,
 }

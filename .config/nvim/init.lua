@@ -6,6 +6,7 @@ require("lazy").setup("plugins")
 
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.opt.cursorline = true
 
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4

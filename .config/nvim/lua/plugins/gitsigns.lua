@@ -11,7 +11,12 @@ return {
         current_line_blame = true,
         current_line_blame_opts = {
             delay = 0,
-            virt_text_pos = 'right_align',
+            virt_text_pos = "eol",
         },
     },
 }
+
+
+
+
+
