@@ -65,7 +65,7 @@ keymap.set("n", "<leader>nf", "<cmd>Neotree focus<cr>", { desc = "Focus Neo-tree
 -- ============================================================================
 
 keymap.set("n", "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "Open CopilotChat" })
-keymap.set("n", "<C-]>", "<cmd>CopilotChatToggle<cr>", { desc = "Open CopilotChat (direct)" })
+keymap.set("n", "<C-]>", "<cmd>CopilotChatToggle<cr>", { desc = "en CopilotChat (direct)" })
 keymap.set("v", "<leader>cx", "<cmd>CopilotChatVisualSelected<cr>", { desc = "CopilotChat with selection" })
 keymap.set("n", "<leader>cb", "<cmd>CopilotChatBuffer<cr>", { desc = "CopilotChat with buffer" })
 
