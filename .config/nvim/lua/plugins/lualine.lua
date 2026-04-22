@@ -7,7 +7,7 @@ return {
     opts = {
         options = {
             disabled_filetypes = {
-                'copilot-chat',
+                'codecompanion',
                 'neo-tree',
                 'toggleterm'
             },
