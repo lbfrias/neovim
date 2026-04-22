@@ -1,9 +1,23 @@
 return {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'neovim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },            -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
-    opts = {},
+    "MeanderingProgrammer/render-markdown.nvim", -- Make Markdown buffers look beautiful
+    ft = { "markdown", "codecompanion" },
+    opts = {
+        render_modes = true, -- Render in ALL modes
+        sign = {
+            enabled = false, -- Turn off in the status column
+        },
+    },
+    config = function(_, opts)
+        require('render-markdown').setup(opts)
+
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "codecompanion",
+            callback = function(ev)
+                local name = vim.api.nvim_buf_get_name(ev.buf)
+                if name == "" then
+                    vim.bo[ev.buf].filetype = "markdown"
+                end
+            end,
+        })
+    end,
 }

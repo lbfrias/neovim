@@ -17,6 +17,14 @@ return {
                 log_level = "DEBUG",
             },
         })
+
+        vim.api.nvim_create_autocmd("Filetype", {
+            pattern = "codecompanion",
+            callback = function()
+                vim.opt_local.number = false
+                vim.opt_local.relativenumber = false
+            end,
+        })
     end
 
 }

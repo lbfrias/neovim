@@ -13,6 +13,6 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.sidescroll=1
 vim.opt.sidescrolloff=0

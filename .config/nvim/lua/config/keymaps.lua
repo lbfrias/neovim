@@ -64,7 +64,7 @@ keymap.set("n", "<leader>tl", function()
     local status = vim.wo.relativenumber and "relative" or "absolute"
     print("Line numbers: " .. status)
 end, { desc = "Toggle relative line numbers" })
-keymap.set("n", "<leader>tc", "<cmd>CopilotChatToggle<cr>", { desc = "Toggle CopilotChat" })
+keymap.set("n", "<leader>tc", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle Code Companion Chat" })
 keymap.set("n", "<leader>tn", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neo-tree" })
 
 -- ============================================================================
