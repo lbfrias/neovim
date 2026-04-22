@@ -18,5 +18,11 @@ return {
         },
         use_libuv_file_watcher=true
         },
+        window = {
+            mappings = {
+                ["w"] = "none",
+                ["<space>"] = "none",
+            }
+        }
     },
 }

@@ -11,42 +11,20 @@ return {
                     return vim.b[buf].neo_tree_source == "filesystem"
                 end,
             },
-            {
-                ft = "neo-tree",
-                title = "Neo-tree Git",
-                size = { width = 0.12 },
-                filter = function(buf)
-                    return vim.b[buf].neo_tree_source == "git_status"
-                end,
-                pinned = true,
-                collapsed = true,
-                open = "Neotree position=right git_status",
-            },
-            {
-                ft = "neo-tree",
-                title = "Neo-tree Buffers",
-                size = { width = 0.12 },
-                filter = function(buf)
-                    return vim.b[buf].neo_tree_source == "buffers"
-                end,
-                pinned = true,
-                collapsed = true,
-                open = "Neotree position=bottom buffers",
-            },
         },
         right = {
             {
                 ft = "copilot-chat",
                 title = "Copilot Chat",
-                size = { width = 0.1 },
-            }
+                size = { width = 0.2 },
+            },
         },
         bottom = {
             {
                 ft = "toggleterm",
                 title = "Terminal",
-                size = { height = 0.3 },
-            }
+                size = { height = 0.25 },
+            },
         }
     } 
 }

@@ -18,5 +18,6 @@ return {
       })
     end,
     opts = {
-    }
+    },
+    enabled = false
 }
