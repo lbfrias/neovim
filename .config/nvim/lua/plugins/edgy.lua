@@ -25,6 +25,9 @@ return {
                 title = "Terminal",
                 size = { height = 0.25 },
             },
-        }
+        },
+        animate = {
+            enabled = false,
+        },
     } 
 }
