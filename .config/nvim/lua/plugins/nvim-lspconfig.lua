@@ -2,20 +2,38 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { 
         "b0o/schemastore.nvim",
-        "cenk1cenk2/schema-companion.nvim" -- Ensure it's a dependency
+        "cenk1cenk2/schema-companion.nvim" 
     },
     lazy = false,
     config = function()
         local companion = require("schema-companion")
 
-        -- 1. Initialize the companion's yamlls adapter
+        -- --- JSONLS CONFIGURATION ---
+        local jsonls_companion = companion.adapters.jsonls.setup({
+            sources = {
+                companion.sources.lsp.setup(),
+                -- You can add specific JSON sources here if needed
+            },
+        })
+
+        vim.lsp.config('jsonls', companion.setup_client(
+            jsonls_companion,
+            {
+                settings = {
+                    json = {
+                        -- Integrate SchemaStore for JSON
+                        schemas = require('schemastore').json.schemas(),
+                        validate = { enable = true },
+                    },
+                },
+            }
+        ))
+
+        -- --- YAMLLS CONFIGURATION ---
         local yamlls_companion = companion.adapters.yamlls.setup({
             sources = {
-                -- Adds built-in Kubernetes matching logic
                 companion.sources.matchers.kubernetes.setup({ version = "master" }),
-                -- Pulls in schemas already present in your LSP config
                 companion.sources.lsp.setup(),
-                -- Static schemas (like your custom K8s URI)
                 companion.sources.schemas.setup({
                     {
                         name = "Kubernetes master",
@@ -25,31 +43,23 @@ return {
             },
         })
 
-        -- 2. Configure yamlls using the companion's output
         vim.lsp.config('yamlls', companion.setup_client(
             yamlls_companion,
             {
-                -- Your existing yamlls-specific settings go here
                 settings = {
                     yaml = {
-                        schemaStore = {
-                            enable = false,
-                            url = "",
-                        },
-                        -- Merge SchemaStore schemas into the companion's logic
+                        schemaStore = { enable = false, url = "" },
                         schemas = require('schemastore').yaml.schemas(),
                     }
                 }
             }
         ))
 
-        -- Your other LSPs remain unchanged
+        -- --- PYRIGHT ---
         vim.lsp.config('pyright', {
             settings = {
                 python = {
-                    analysis = {
-                        typeCheckingMode = "basic",
-                    }
+                    analysis = { typeCheckingMode = "basic" }
                 }
             }
         })
