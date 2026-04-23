@@ -13,9 +13,7 @@
 --   w = Window (navigation and resizing)
 --
 -- Style:
---   - All keybinds use <leader>key for consistency and which-key.nvim integration
 --   - Organized by function for easier discovery and customization
---   - Avoids direct keybinds to prevent plugin conflicts
 --
 -- ============================================================================
 
@@ -40,6 +38,8 @@ keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep" 
 keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find buffers" })
 keymap.set("n", "<leader>fh", "<cmd>FzfLua help_tags<cr>", { desc = "Help tags" })
 keymap.set("n", "<leader>fs", "<cmd>FzfLua blines<cr>", { desc = "Search in buffer" })
+keymap.set("n", "<leader>fd", "<cmd>FzfLua diagnostics_document<cr>", { desc = "Show diagnostics in buffer" })
+keymap.set("n", "<leader>fD", "<cmd>FzfLua diagnostics_workspace<cr>", { desc = "Show diagnostics in workspace" })
 keymap.set("n", "<leader>fc", "<cmd>FzfLua oldfiles<cr>", { desc = "Recent files" })
 
 -- ============================================================================
@@ -81,13 +81,13 @@ keymap.set("n", "<leader><leader>", "<cmd>FzfLua buffers<cr>", { desc = "Switch 
 -- ============================================================================
 
 -- Window navigation
-keymap.set("n", "<leader>wh", "<C-w>h", { desc = "Move to left window" })
-keymap.set("n", "<leader>wj", "<C-w>j", { desc = "Move to down window" })
-keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Move to up window" })
-keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Move to right window" })
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to down window" })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to up window" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 -- Window resizing
-keymap.set("n", "<leader>w+", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-keymap.set("n", "<leader>w-", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-keymap.set("n", "<leader>w<", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-keymap.set("n", "<leader>w>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+keymap.set("n", "<C-+>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+keymap.set("n", "<C-->", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+keymap.set("n", "<C-<>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+keymap.set("n", "<C->>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })

@@ -1,5 +1,6 @@
 return {
     'nvim-lualine/lualine.nvim',
+    lazy = false,
     dependencies = { 
         'nvim-tree/nvim-web-devicons',
         'cenk1cenk2/schema-companion.nvim',
@@ -11,7 +12,7 @@ return {
                 'neo-tree',
                 'toggleterm'
             },
-            theme = 'gruvbox'
+            theme = 'auto'
         },
         sections = {
             lualine_c = { 'filename' },
@@ -29,12 +30,20 @@ return {
                         return package.loaded["schema-companion"] 
                             and require("schema-companion").get_current_schemas() ~= nil
                     end,
-                    color = { fg = '#fabd2f' }, -- Gruvbox yellow
+                    color = "DiagnosticHint"
                 },
                 'encoding',
                 'fileformat',
                 'filetype',
             },
+            lualine_z = {
+                'location',
+                {
+                    require("lazy.status").updates,
+                    cond = require("lazy.status").has_updates,
+                    color = "DiagnosticWarn",
+                }
+            }
         }
     },
 }

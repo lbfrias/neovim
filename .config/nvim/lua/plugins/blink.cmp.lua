@@ -3,6 +3,7 @@ return {
 
     -- use a release tag to download pre-built binaries
     version = '1.*',
+    event = 'InsertEnter',
     -- AND/OR build from source
     -- build = 'cargo build --release',
     -- If you use nix, you can build from source with:
