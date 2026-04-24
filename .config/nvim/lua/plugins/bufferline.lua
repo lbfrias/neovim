@@ -9,14 +9,14 @@ return {
             offsets = {
                 {
                     filetype = "neo-tree",
-                    text = "Neo-tree",
-                    text_align = "left"
+                    text = "NEO-TREE",
+                    text_align = "center"
                 },
                 {
                     filetype = "codecompanion",
-                    text = "Code Companion",
-                    text_align = "left"
-                }
+                    text = "CODE COMPANION",
+                    text_align = "center"
+                },
             }
         }
     },
