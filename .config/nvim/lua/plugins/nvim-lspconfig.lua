@@ -21,6 +21,7 @@ return {
             {
                 settings = {
                     json = {
+                        schemaStore = { enable = true },
                         -- Integrate SchemaStore for JSON
                         schemas = require('schemastore').json.schemas(),
                         validate = { enable = true },
@@ -36,7 +37,7 @@ return {
                 companion.sources.lsp.setup(),
                 companion.sources.schemas.setup({
                     {
-                        name = "Kubernetes master",
+                        name = "Kubernetes (master)",
                         uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json",
                     },
                 }),
@@ -48,8 +49,10 @@ return {
             {
                 settings = {
                     yaml = {
-                        schemaStore = { enable = false, url = "" },
+                        schemaStore = { enable = true },
                         schemas = require('schemastore').yaml.schemas(),
+                        validate = { enable = true },
+                        kubernetesCRDStore = { enable = true }
                     }
                 }
             }
