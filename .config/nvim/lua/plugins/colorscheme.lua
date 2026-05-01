@@ -2,7 +2,8 @@ return {
     -- gruvbox
     {
         "ellisonleao/gruvbox.nvim",
-        priority = 1000,
+        priority = 1002,
+        lazy = true,
         config = function()
             require("gruvbox").setup({})
             vim.o.background = "dark" -- or "light" for light mode
@@ -14,6 +15,7 @@ return {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1001,
+        lazy = true,
         config = function()
             vim.cmd("colorscheme catppuccin-mocha")
         end,
@@ -23,7 +25,7 @@ return {
     {
         'sainnhe/gruvbox-material',
         lazy = false,
-        priority = 1002,
+        priority = 1000,
         config = function()
             -- Optionally configure and load the colorscheme
             -- directly inside the plugin declaration.

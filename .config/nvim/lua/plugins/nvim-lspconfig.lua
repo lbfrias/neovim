@@ -4,7 +4,7 @@ return {
         "b0o/schemastore.nvim",
         "cenk1cenk2/schema-companion.nvim" 
     },
-    lazy = false,
+    event = "BufReadPost",
     config = function()
         local companion = require("schema-companion")
 
