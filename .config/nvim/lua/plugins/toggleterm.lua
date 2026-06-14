@@ -3,5 +3,6 @@ return {
     version = "*",
     cmd = "ToggleTerm",
     opts = {
+        start_in_insert = false
     }
 }

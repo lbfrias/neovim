@@ -12,11 +12,6 @@ return {
                     text = "NEO-TREE",
                     text_align = "center"
                 },
-                {
-                    filetype = "codecompanion",
-                    text = "CODE COMPANION",
-                    text_align = "center"
-                },
             }
         }
     },

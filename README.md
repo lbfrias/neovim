@@ -9,3 +9,4 @@ neovim config
 - nodejs
 - tree-sitter
 - tree-sitter-cli
+- github-copilot-cli

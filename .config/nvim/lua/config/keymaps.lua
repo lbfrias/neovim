@@ -17,16 +17,17 @@
 --
 -- ============================================================================
 
+
 local keymap = vim.keymap
 
 -- ============================================================================
 -- HELPER FUNCTIONS
 -- ============================================================================
 
---- Open or toggle terminal using toggleterm
-local function toggle_terminal()
-    require("toggleterm").toggle()
-    vim.cmd("stopinsert")  -- Ensure terminal opens in normal mode
+--- Open or toggle Sidekick
+local function toggle_sidekick()
+    require("sidekick.cli").toggle({ name = "copilot", focus = true})
+    vim.cmd("stopinsert")  -- Ensure Sidekick opens in normal mode
 end
 
 -- ============================================================================
@@ -52,7 +53,7 @@ keymap.set("n", "<leader>nf", "<cmd>Neotree focus<cr>", { desc = "Focus Neo-tree
 -- TOGGLE VIEWS
 -- ============================================================================
 
-keymap.set("n", "<leader>tt", function() toggle_terminal() end, { desc = "Toggle terminal" })
+keymap.set("n", "<leader>tt", function() require("toggleterm").toggle() end, { desc = "Toggle terminal" })
 keymap.set("n", "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", { desc = "Toggle markdown rendering" })
 keymap.set("n", "<leader>ts", function()
     vim.wo.spell = not vim.wo.spell
@@ -64,7 +65,8 @@ keymap.set("n", "<leader>tl", function()
     local status = vim.wo.relativenumber and "relative" or "absolute"
     print("Line numbers: " .. status)
 end, { desc = "Toggle relative line numbers" })
-keymap.set("n", "<leader>tc", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle Code Companion Chat" })
+-- keymap.set("n", "<leader>tc", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle Code Companion Chat" })
+keymap.set("n", "<leader>tc", function() toggle_sidekick() end, { desc = "Toggle Copilot CLI" })
 keymap.set("n", "<leader>tn", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neo-tree" })
 
 -- ============================================================================
@@ -89,5 +91,5 @@ keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 -- Window resizing
 keymap.set("n", "<C-+>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 keymap.set("n", "<C-->", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-keymap.set("n", "<C-<>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-keymap.set("n", "<C->>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+keymap.set("n", "<C-,>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+keymap.set("n", "<C-.>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })

@@ -8,9 +8,8 @@ return {
     opts = {
         options = {
             disabled_filetypes = {
-                'codecompanion',
                 'neo-tree',
-                'toggleterm'
+                'toggleterm',
             },
             theme = 'auto'
         },

@@ -23,6 +23,7 @@ return {
                 ["w"] = "none",
                 ["<space>"] = "none",
             }
-        }
+        },
+        open_files_do_not_replace_types = { "toggleterm", "sidekick_terminal" }
     },
 }

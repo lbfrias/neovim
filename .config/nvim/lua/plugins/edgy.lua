@@ -15,8 +15,8 @@ return {
         },
         right = {
             {
-                ft = "codecompanion",
-                title = "Code Companion",
+                ft = "sidekick_terminal",
+                title = "Copilot",
                 size = { width = 0.4 },
                 wo = { winbar = false },
             },
@@ -41,5 +41,24 @@ return {
         animate = {
             enabled = false,
         },
+        keys = {
+            ["<C-.>"] = function(win)
+                -- Calculate maximum allowed width (e.g., 45% of total screen columns)
+                local max_width = math.floor(vim.o.columns * 0.45)
+
+                if win.width < max_width then
+                    win:resize("width", 3)
+                end
+            end,
+
+            ["<C-,>"] = function(win)
+                -- Calculate minimum allowed width (e.g., 15% of total screen columns)
+                local min_width = math.floor(vim.o.columns * 0.15)
+
+                if win.width > min_width then
+                    win:resize("width", -3)
+                end
+            end,
+        }
     } 
 }
