@@ -1,0 +1,3 @@
+Line 1
+Conflict from main
+Line 3
