@@ -9,12 +9,17 @@ return {
             offsets = {
                 {
                     filetype = "neo-tree",
-                    text = "FILES",
+                    text = "Neo-tree",
                     text_align = "center"
                 },
                 {
                     filetype = "DiffviewFiles",
-                    text = "FILES",
+                    text = "Diffview",
+                    text_align = "center"
+                },
+                {
+                    filetype = "sidekick_terminal",
+                    text = "Copilot CLI",
                     text_align = "center"
                 },
             }
