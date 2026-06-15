@@ -91,7 +91,7 @@ keymap.set("n", "<leader>tn", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neo-tr
 
 keymap.set("n", "<leader>]", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 keymap.set("n", "<leader>[", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
-keymap.set("n", "<leader>bc", "<cmd>bdelete<cr>", { desc = "Close buffer" })
+keymap.set("n", "<leader>bc", ":Bdelete<cr>", { desc = "Close buffer", silent = true })
 keymap.set("n", "<leader><leader>", "<cmd>FzfLua buffers<cr>", { desc = "Switch buffer" })
 
 -- ============================================================================
@@ -109,3 +109,18 @@ keymap.set("n", "<C-+>", "<cmd>resize +2<cr>", { desc = "Increase window height"
 keymap.set("n", "<C-->", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 keymap.set("n", "<C-,>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 keymap.set("n", "<C-.>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
+-- ============================================================================
+-- NEXT EDIT SUGGESTIONS
+-- ============================================================================
+
+-- Map <Tab> in normal mode to Sidekick's next-edit action. If Sidekick
+-- doesn't handle the key, fall back to normal <Tab> behavior.
+keymap.set("n", "<Tab>", function()
+    if not require("sidekick").nes_jump_or_apply() then
+        return "<Tab>"
+    end
+end, { expr = true, silent = true, desc = "Sidekick: goto/apply next edit" })
+
+-- Mapping for manually invoking a next edit suggestion (:Sidekick nes update)
+keymap.set("n", "<leader>nu", "<cmd>Sidekick nes update<cr>", { desc = "Update next edit suggestions" })

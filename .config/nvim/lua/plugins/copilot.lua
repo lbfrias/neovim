@@ -1,13 +1,19 @@
 return {
-    "github/copilot.vim",
-    event = "InsertEnter",
+    "zbirenbaum/copilot.lua",
+    dependencies = {
+        "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+    },
     cmd = "Copilot",
+    event = "InsertEnter",
     config = function()
-        -- Disable default Tab keybinding
-        vim.g.copilot_no_tab_map = true
-        
-        -- Set custom keybinding for Copilot (Ctrl-Alt-l)
-        vim.keymap.set('i', '<C-M-l>', 'copilot#Accept("\\<CR>")', { noremap = true, silent = true, expr = true, replace_keycodes = false })
-    end
+        require("copilot").setup({
+            suggestion = {
+                enabled = true,
+                auto_trigger = false, 
+            },
+            nes = {
+                enabled = false,
+            }
+        })
+    end,
 }
-

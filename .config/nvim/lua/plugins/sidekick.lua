@@ -6,5 +6,8 @@ return {
             backend = "tmux",
             enabled = true,
         },
+        nes = {
+            enabled = true,
+        },
     }
 }
