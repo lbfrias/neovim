@@ -10,6 +10,7 @@ return {
             disabled_filetypes = {
                 'neo-tree',
                 'toggleterm',
+                'DiffviewFiles',
             },
             theme = 'auto'
         },

@@ -6,7 +6,7 @@ require("lazy").setup("plugins")
 
 vim.wo.number = true
 vim.wo.relativenumber = true
--- vim.opt.fillchars:append({ eob = " " })
+vim.opt.fillchars:append({ eob = " ", diff = " " })
 vim.opt.cursorline = true
 
 vim.opt.expandtab = true

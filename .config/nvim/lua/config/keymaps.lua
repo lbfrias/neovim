@@ -30,6 +30,21 @@ local function toggle_sidekick()
     vim.cmd("stopinsert")  -- Ensure Sidekick opens in normal mode
 end
 
+--- Toggle Diffview with proper initialization
+local function toggle_diffview()
+    -- Get the view collection from diffview's internal state
+    local lib = require("diffview.lib")
+    local view = lib.get_current_view()
+
+    if view then
+        -- Diffview is open, so close it
+        vim.cmd("DiffviewClose")
+    else
+        -- Diffview is closed, so open it
+        vim.cmd("DiffviewOpen")
+    end
+end
+
 -- ============================================================================
 -- SEARCH & FIND (FzfLua)
 -- ============================================================================
@@ -55,6 +70,7 @@ keymap.set("n", "<leader>nf", "<cmd>Neotree focus<cr>", { desc = "Focus Neo-tree
 
 keymap.set("n", "<leader>tt", function() require("toggleterm").toggle() end, { desc = "Toggle terminal" })
 keymap.set("n", "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", { desc = "Toggle markdown rendering" })
+keymap.set("n", "<leader>g", toggle_diffview, { desc = "Toggle Diffview" })
 keymap.set("n", "<leader>ts", function()
     vim.wo.spell = not vim.wo.spell
     local status = vim.wo.spell and "enabled" or "disabled"

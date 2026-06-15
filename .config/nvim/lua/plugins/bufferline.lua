@@ -9,7 +9,12 @@ return {
             offsets = {
                 {
                     filetype = "neo-tree",
-                    text = "NEO-TREE",
+                    text = "FILES",
+                    text_align = "center"
+                },
+                {
+                    filetype = "DiffviewFiles",
+                    text = "FILES",
                     text_align = "center"
                 },
             }
