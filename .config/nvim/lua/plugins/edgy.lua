@@ -7,7 +7,10 @@ return {
                 ft = "neo-tree",
                 title = "Neo-tree",
                 size = { width = 0.2 },
-                wo = { winbar = true },
+                wo = { 
+                    winbar = false,
+                    winfixbuf = true,
+                },
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "filesystem"
                 end,
@@ -18,7 +21,10 @@ return {
                 ft = "sidekick_terminal",
                 title = "Copilot",
                 size = { width = 0.4 },
-                wo = { winbar = true },
+                wo = {
+                    winbar = false,
+                    winfixbuf = true
+                },
             },
         },
         bottom = {
@@ -35,7 +41,10 @@ return {
                     return "Terminal"
                 end,
                 size = { height = 0.25 },
-                wo = { winbar = true},
+                wo = {
+                    winbar = false,
+                    winfixbuf = true
+                },
             },
         },
         animate = {
