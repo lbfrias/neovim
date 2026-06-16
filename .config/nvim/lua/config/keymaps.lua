@@ -24,12 +24,6 @@ local keymap = vim.keymap
 -- HELPER FUNCTIONS
 -- ============================================================================
 
---- Open or toggle Sidekick
-local function toggle_sidekick()
-    require("sidekick.cli").toggle({ name = "copilot", focus = true})
-    vim.cmd("stopinsert")  -- Ensure Sidekick opens in normal mode
-end
-
 --- Toggle Diffview with proper initialization
 local function toggle_diffview()
     -- Get the view collection from diffview's internal state
@@ -70,7 +64,7 @@ keymap.set("n", "<leader>nf", "<cmd>Neotree focus<cr>", { desc = "Focus Neo-tree
 
 keymap.set("n", "<leader>tt", function() require("toggleterm").toggle() end, { desc = "Toggle terminal" })
 keymap.set("n", "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", { desc = "Toggle markdown rendering" })
-keymap.set("n", "<leader>g", toggle_diffview, { desc = "Toggle Diffview" })
+keymap.set("n", "<leader>g", toggle_diffview,  { desc = "Toggle Diffview" })
 keymap.set("n", "<leader>ts", function()
     vim.wo.spell = not vim.wo.spell
     local status = vim.wo.spell and "enabled" or "disabled"
@@ -81,8 +75,7 @@ keymap.set("n", "<leader>tl", function()
     local status = vim.wo.relativenumber and "relative" or "absolute"
     print("Line numbers: " .. status)
 end, { desc = "Toggle relative line numbers" })
--- keymap.set("n", "<leader>tc", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle Code Companion Chat" })
-keymap.set("n", "<leader>tc", function() toggle_sidekick() end, { desc = "Toggle Copilot CLI" })
+keymap.set("n", "<leader>tc", function() require("sidekick.cli").toggle({ name = "copilot", focus = true}) end, { desc = "Toggle Copilot CLI" })
 keymap.set("n", "<leader>tn", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neo-tree" })
 
 -- ============================================================================
