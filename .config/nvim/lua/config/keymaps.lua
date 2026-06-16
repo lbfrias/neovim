@@ -77,6 +77,7 @@ keymap.set("n", "<leader>tl", function()
 end, { desc = "Toggle relative line numbers" })
 keymap.set("n", "<leader>tc", function() require("sidekick.cli").toggle({ name = "copilot", focus = true}) end, { desc = "Toggle Copilot CLI" })
 keymap.set("n", "<leader>tn", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neo-tree" })
+keymap.set("n", "<leader>td", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = "Toggle diagnostics" })
 
 -- ============================================================================
 -- BUFFER & TAB NAVIGATION
@@ -84,7 +85,6 @@ keymap.set("n", "<leader>tn", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neo-tr
 
 keymap.set("n", "<leader>]", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 keymap.set("n", "<leader>[", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
-keymap.set("n", "<leader>bc", ":Bdelete<cr>", { desc = "Close buffer", silent = true })
 keymap.set("n", "<leader><leader>", "<cmd>FzfLua buffers<cr>", { desc = "Switch buffer" })
 
 -- ============================================================================

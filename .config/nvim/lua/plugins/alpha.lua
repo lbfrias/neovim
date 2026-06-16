@@ -7,6 +7,9 @@ return {
         local alpha = require("alpha")
         local dashboard = require("alpha.themes.dashboard")
 
+        -- Flag to bypass BufEnter tracking when explicitly creating a new file
+        local creating_new_file = false
+
         -- Header
         dashboard.section.header.val = {
             "$$\\   $$ |$$$$$$$$\\  $$$$$$\\  $$\\    $$ |$$$$$$\\ $$\\      $$ |",
@@ -21,8 +24,19 @@ return {
         dashboard.section.header.opts.hl = "AlphaHeader"
 
         -- Action buttons
+
+        vim.api.nvim_create_user_command("DashboardNewFile",
+            function()
+                creating_new_file = true
+                vim.cmd("enew")
+                creating_new_file = false
+            end,
+            {}
+        )
+
         dashboard.section.buttons.val = {
-            dashboard.button("e", "  New file",     "<cmd>enew<cr>"),
+            -- Customized "New file" logic to circumvent the auto-close block
+            dashboard.button("e", "  New file", ":DashboardNewFile<cr>"),
             dashboard.button("f", "  Find file",    "<cmd>FzfLua files<cr>"),
             dashboard.button("r", "  Recent files", "<cmd>FzfLua oldfiles<cr>"),
             dashboard.button("q", "  Quit",         "<cmd>qa<cr>"),
@@ -42,13 +56,6 @@ return {
         dashboard.section.footer.opts.hl = "AlphaFooter"
 
         -- Dynamic top padding to vertically center content
-        -- Content breakdown:
-        --   header:          8 lines
-        --   pad after header: 2
-        --   buttons:         4 lines
-        --   pad after buttons: 2
-        --   footer:          1 line
-        --   total:           ~17 lines
         local content_height = 17
         local function top_padding()
             local lines = vim.o.lines - vim.o.cmdheight
@@ -76,7 +83,7 @@ return {
             dashboard.section.footer,
         }
 
-        -- Disable alpha's own VimEnter handler, we'll manage it ourselves
+        -- Disable alpha's own VimEnter handler
         dashboard.config.opts = { noautocmd = true }
 
         alpha.setup(dashboard.config)
@@ -110,24 +117,27 @@ return {
             end,
         })
 
-        -- Open alpha when the last listed buffer is deleted
-        vim.api.nvim_create_autocmd("BufDelete", {
+        -- Open Alpha when entering an empty fallback buffer
+        vim.api.nvim_create_autocmd("BufEnter", {
             callback = function()
+                -- Skip completely if we are intentionally pressing "e" to create a new file
+                if creating_new_file then return end
+
                 vim.schedule(function()
                     local bufs = vim.fn.getbufinfo({ buflisted = 1 })
 
-                    -- Check if we are down to one buffer and it's empty/unnamed
-                    if #bufs == 1 and bufs[1].name == "" and bufs[1].changed == 0 then
-                        local lines = vim.api.nvim_buf_get_lines(bufs[1].bufnr, 0, -1, false)
-                        if #lines == 1 and lines[1] == "" then
-                            -- Don't trigger if we are already on the alpha screen
-                            if vim.bo.filetype ~= "alpha" then
-                                vim.cmd("Alpha")
-                            end
+                    if #bufs == 1 then
+                        local cur_buf = bufs[1].bufnr
+                        local name = vim.api.nvim_buf_get_name(cur_buf)
+                        local lines = vim.api.nvim_buf_get_lines(cur_buf, 0, -1, false)
+                        local is_empty = name == "" and #lines == 1 and lines[1] == ""
+
+                        if is_empty and vim.bo[cur_buf].filetype ~= "alpha" then
+                            vim.bo[cur_buf].buflisted = false
+                            require("alpha").start(true)
                         end
                     elseif #bufs == 0 then
-                        -- Fallback if no buffers are left at all
-                        vim.cmd("Alpha")
+                        require("alpha").start(true)
                     end
                 end)
             end,

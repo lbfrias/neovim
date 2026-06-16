@@ -8,6 +8,7 @@ return {
             "docker_compose_language_service",
             "docker_language_server",
             "jsonls",
+            "lua_ls",
             "pyright",
             "terraformls",
             "yamlls",

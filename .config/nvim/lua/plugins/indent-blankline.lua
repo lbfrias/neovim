@@ -3,8 +3,8 @@ return {
     main = "ibl",
     ---@module "ibl"
     ---@type ibl.config
-    event = "BufReadPost",
     opts = {},
+    event = "BufReadPost",
     config = function()
         local highlight = {
             "RainbowRed",

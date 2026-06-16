@@ -18,6 +18,18 @@ vim.opt.wrap = true
 vim.opt.sidescroll=1
 vim.opt.sidescrolloff=0
 
+vim.diagnostic.config({
+    signs = {
+        active = true,
+        text = {
+          [vim.diagnostic.severity.ERROR] = "●",
+          [vim.diagnostic.severity.WARN]  = "●",
+          [vim.diagnostic.severity.HINT]  = "●",
+          [vim.diagnostic.severity.INFO]  = "●",
+        },
+    },
+})
+
 vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
     callback = function()

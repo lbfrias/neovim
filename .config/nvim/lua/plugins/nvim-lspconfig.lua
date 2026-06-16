@@ -1,8 +1,8 @@
 return {
     "neovim/nvim-lspconfig",
-    dependencies = { 
+    dependencies = {
         "b0o/schemastore.nvim",
-        "cenk1cenk2/schema-companion.nvim" 
+        "cenk1cenk2/schema-companion.nvim"
     },
     event = "BufReadPost",
     config = function()
@@ -18,6 +18,7 @@ return {
 
         vim.lsp.config('jsonls', companion.setup_client(
             jsonls_companion,
+            ---@diagnostic disable-next-line: missing-fields
             {
                 settings = {
                     json = {
@@ -46,6 +47,7 @@ return {
 
         vim.lsp.config('yamlls', companion.setup_client(
             yamlls_companion,
+            ---@diagnostic disable-next-line: missing-fields
             {
                 settings = {
                     yaml = {

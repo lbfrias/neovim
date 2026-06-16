@@ -9,10 +9,13 @@ return {
         require("copilot").setup({
             suggestion = {
                 enabled = true,
-                auto_trigger = false, 
+                auto_trigger = false,
             },
             nes = {
                 enabled = false,
+            },
+            filetypes = {
+                noice = false,
             }
         })
     end,

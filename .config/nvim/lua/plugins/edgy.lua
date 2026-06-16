@@ -5,11 +5,11 @@ return {
         left = {
             {
                 ft = "neo-tree",
-                title = "Neo-tree",
+                title = "File Explorer",
                 size = { width = 0.2 },
-                wo = { 
+                wo = {
                     winbar = false,
-                    winfixbuf = true,
+                    winfixbuf = true
                 },
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "filesystem"
@@ -69,5 +69,5 @@ return {
                 end
             end,
         }
-    } 
+    }
 }

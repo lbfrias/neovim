@@ -1,7 +1,7 @@
 return {
     'nvim-lualine/lualine.nvim',
     event = "VeryLazy",
-    dependencies = { 
+    dependencies = {
         'nvim-tree/nvim-web-devicons',
         'cenk1cenk2/schema-companion.nvim',
     },
@@ -27,7 +27,7 @@ return {
                     end,
                     cond = function()
                         -- Check if plugin is loaded AND if we are in a supported filetype
-                        return package.loaded["schema-companion"] 
+                        return package.loaded["schema-companion"]
                             and require("schema-companion").get_current_schemas() ~= nil
                     end,
                     color = "DiagnosticHint"
