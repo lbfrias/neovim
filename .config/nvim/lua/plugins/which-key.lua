@@ -5,6 +5,9 @@ return {
     opts = {
         preset = "helix",
         spec = {
-        }
+        },
+        icons = {
+            group = ""
+        },
     },
 }
