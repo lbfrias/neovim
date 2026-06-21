@@ -51,7 +51,7 @@ return {
             enabled = false,
         },
         keys = {
-            ["<C-]>"] = function(win)
+            ["<M-]>"] = function(win)
                 -- Calculate maximum allowed width (e.g., 45% of total screen columns)
                 local max_width = math.floor(vim.o.columns * 0.45)
 
@@ -60,7 +60,7 @@ return {
                 end
             end,
 
-            ["<C-[>"] = function(win)
+            ["<M-[>"] = function(win)
                 -- Calculate minimum allowed width (e.g., 15% of total screen columns)
                 local min_width = math.floor(vim.o.columns * 0.15)
 
